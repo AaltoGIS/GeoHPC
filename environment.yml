@@ -1,0 +1,22 @@
+name: geohpc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - geopandas
+  - movingpandas
+  - numpy
+  - scikit-learn
+  - osmnx=1.6.0
+  - r5py
+  - h3pandas
+  - h3-py # comes with h3pandas
+  - geemap
+  - matplotlib
+  - datashader
+  #- keplergl # this can be ommited if cause trouble
+  - momepy
+  - jupyterlab
+  - dask-labextension
+  - pip
+    - routingpy
