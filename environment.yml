@@ -18,5 +18,6 @@ dependencies:
   - momepy
   - jupyterlab
   - dask-labextension
-  - pip
-    - routingpy
+  - htop
+  # - pip
+  #   - routingpy=1.3.0
