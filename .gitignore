@@ -1,0 +1,5 @@
+# avoid outputs and cache
+
+lessons/*/cache
+lessons/*/output
+
