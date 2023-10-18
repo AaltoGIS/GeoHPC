@@ -3,3 +3,8 @@
 lessons/*/cache
 lessons/*/output
 
+# viz
+geohpc-results.qgz
+
+# extra
+lessons/*/img/*.pgw
