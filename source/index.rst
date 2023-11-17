@@ -53,13 +53,13 @@ Content
    getting-started/install-env
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Lesson 1
 
    lessons/L1/01_ShortestPath-Parallelization.ipynb
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Long run development test
 
    lessons/test/01_ShortestPath-LongRun-16cores.ipynb
