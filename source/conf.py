@@ -45,7 +45,7 @@ html_theme = 'sphinx_book_theme'
 todo_include_todos = True
 
 # Add any paths that contain custom static files (such as style sheets)
-html_static_path = ['']
+html_static_path = ['_static']
 html_logo = '_static/aalto-logo-web.png'
 html_title = ""
 
