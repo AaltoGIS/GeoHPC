@@ -1,0 +1,14 @@
+jupyter-book
+sphinx==7.1.2
+sphinx-book-theme
+requests==2.28.1
+matplotlib
+jupyter-sphinx
+nbsphinx
+sphinxcontrib-bibtex
+MyST-NB
+nbconvert==6.4.4
+# sphinx-togglebutton
+ipython
+# sphinx_design
+# sphinx-carousel
