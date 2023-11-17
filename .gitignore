@@ -1,10 +1,12 @@
 # avoid outputs and cache
-
-lessons/*/cache
-lessons/*/output
+source/lessons/*/cache
+source/lessons/*/output
 
 # viz
 geohpc-results.qgz
 
 # extra
 lessons/*/img/*.pgw
+
+# build html
+build
