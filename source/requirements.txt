@@ -1,6 +1,6 @@
 jupyter-book
-sphinx==7.0.1
-sphinx-book-theme==0.3.3
+sphinx
+sphinx-book-theme
 requests==2.28.1
 matplotlib
 jupyter-sphinx
