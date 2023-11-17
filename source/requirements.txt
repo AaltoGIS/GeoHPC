@@ -8,7 +8,7 @@ nbsphinx
 sphinxcontrib-bibtex
 MyST-NB
 nbconvert==6.4.4
-# sphinx-togglebutton
+sphinx-togglebutton
 ipython
 # sphinx_design
 # sphinx-carousel
