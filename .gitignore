@@ -8,5 +8,6 @@ geohpc-results.qgz
 # extra
 lessons/*/img/*.pgw
 
-# build html
+# build html and env
 build
+env
