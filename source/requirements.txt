@@ -4,6 +4,7 @@ sphinx-book-theme
 requests==2.28.1
 matplotlib
 jupyter-sphinx
+sphinx-design
 nbsphinx
 sphinxcontrib-bibtex
 MyST-NB
