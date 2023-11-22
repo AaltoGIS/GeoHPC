@@ -47,7 +47,7 @@ Content
    course-info/introduction
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Getting started
 
    getting-started/install-env

@@ -9,8 +9,8 @@
 # from sphinx.util import SkipProgressMessage, progress_message
 
 project = 'Spatial Data Analysis with High Performance Computing (HPC)'
-copyright = '2023, Bryan R. Vallejo. GIST-Lab, Aalto University'
-author = 'Bryan R. Vallejo. GIST-Lab, Aalto University'
+copyright = 'GIST-Lab (2003), Aalto University'
+author = 'Bryan R. Vallejo. GIST-Lab - Aalto University'
 release = 'v1'
 
 # -- General configuration ---------------------------------------------------
@@ -24,6 +24,7 @@ extensions = [
     'IPython.sphinxext.ipython_directive',
     'myst_nb',
     'jupyter_sphinx',
+    'sphinx_design',
 ]
 
 templates_path = ['_templates']
