@@ -50,6 +50,7 @@ Content
    :maxdepth: 2
    :caption: Getting started
 
+   getting-started/activate-account
    getting-started/install-env
 
 .. toctree::
@@ -58,11 +59,11 @@ Content
 
    lessons/L1/01_ShortestPath-Parallelization.ipynb
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Long run development test
+.. .. toctree::
+..    :maxdepth: 2
+..    :caption: Long run development test
 
-   lessons/test/01_ShortestPath-LongRun-16cores.ipynb
+..    lessons/test/01_ShortestPath-LongRun-16cores.ipynb
 
 
 
