@@ -13,6 +13,7 @@ The result:
 
 ![map1](source/lessons/L1/img/GeoHPC-map1.png)
 
+<!-- 
 # Development-test
 
 You can find an example developed for testing the Parallel processing performance with a long processing time example.
@@ -28,7 +29,7 @@ The advantage in processing time using parallelization:
 
 The result:
 
-![map1](source/lessons/test/img/GeoHPC-map1.png)
+![map1](source/lessons/test/img/GeoHPC-map1.png) -->
 
 # Attribution
 
