@@ -10,3 +10,5 @@ lessons/*/img/*.pgw
 
 # build html and env
 build
+pip
+env
