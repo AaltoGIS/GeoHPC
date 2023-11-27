@@ -102,7 +102,7 @@ Finally you can clear the terminal, if you want, using the command:
 Install *Tykky* module
 -------------------------
 
-The Tykky module is a container wrapper that helps to install software in HPC. It can be used to container and conda environment 
+The Tykky module is a container wrapper that helps to install software in HPC. It can be used to containerize a conda environment 
 using an **environment.yml** file. We will activate the Tykky module and install a customized environment that we will use further 
 with our notebooks.
 
@@ -145,26 +145,26 @@ Be sure that you have added *Tykky* using **module list**, it will tell like in 
     
     *Figure 7. Puhti - Module tykky*
 
-Now, we will containerize our environment using *tykky* and *mamba*. We need to specify two directories: 1) the folder 
+Now, we will containerize our environment using *tykky*. We need to specify two directories: 1) the folder directory 
 where you will containerize the environment, and 2) the **environment.yml** file.
 
-The command we will use has the form *conda-containerize new --mamba --prefix {folder-directory} {environment.yml}*
+The command we will use has the form *conda-containerize new --prefix {folder-directory} {environment.yml}*
 
 You can use the next command (be sure you replace 200xxxx with your project number):
 
 .. code-block:: bash
 
-    $ conda-containerize new --mamba --prefix GeoHPC/env GeoHPC/env/environment.yml
+    $ conda-containerize new --prefix GeoHPC/env GeoHPC/env/environment.yml
 
-.. admonotion:: Notice!
+.. admonition:: Notice!
 
-    *Tykky* is currently on maintenance the installation might not be successful at the moment.
+    If you want to replace an already installed environment you can change the parameter **new** to **update**
+
+Once the environment is installed you will see the message *Done*. This installation process might take approximately 15 minutes. Your terminal might give a message like in Figure 8.
+
+.. figure:: img/img8.png
     
-.. It will start installing your environment and it should give a successful message like Figure 8.
-
-.. .. figure:: img/img8.png
-    
-..     *Figure 7. Puhti - Environment containerized using tykky*
+    *Figure 7. Puhti - Environment containerized using tykky*
 
 Activate your environment
 -----------------------------
