@@ -166,6 +166,9 @@ Once the environment is installed you will see the message *Done*. This installa
     
     *Figure 7. Puhti - Environment containerized using tykky*
 
+If everything looks like this so far you have installed successfully a customized Python environment in HPC. 
+The location of the environment is inside your cloned repository in the folder **env**. Just as a reminder!
+
 Activate your environment
 -----------------------------
 ...
