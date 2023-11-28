@@ -5,7 +5,7 @@ Log in to Puhti
 ------------------
 
 The first step to start creating your own space for **High Performance Computing (HPC)** 
-is to Log in in the **CSC Puhti supercomputer**.
+is to log in in the **CSC Puhti supercomputer**.
 
 .. admonition:: CSC Puhti!
 
@@ -23,7 +23,7 @@ Create your personal folder
 -----------------------------
 
 Once you are logged in you will see the *User Interface* of Puhti that contains that Apps that you can connect the HPC resources (Figure 1). 
-Then, we are going to install a containerized Python environment in our **Home Directory** that later on will be connected to **Jupyter Lab**. 
+We are going to install a containerized Python environment in our **Home Directory** that later on will be connected to **Jupyter Lab**. 
 
 Start opening the **Home Directory**
 
@@ -92,7 +92,7 @@ Once the Repository is cloned it should be abvailable in your Directory. You can
 
 If you are willing to know more about Linux commands you can check in the `Linux commands from CSC documention <https://docs.csc.fi/support/tutorials/env-guide/using-linux-in-command-line/>`_.
 
-Finally you can clear the terminal, if you want, using the command:
+Finally you can clear the terminal (optionally) using the command:
 
 
 .. code-block:: bash
@@ -105,15 +105,6 @@ Install *Tykky* module
 The Tykky module is a container wrapper that helps to install software in HPC. It can be used to containerize a conda environment 
 using an **environment.yml** file. We will activate the Tykky module and install a customized environment that we will use further 
 with our notebooks.
-
-.. First, let's set up the folder **env** as our root directory using terminal from the cloned repository, using the command:
-
-.. .. code-block:: bash
-
-..     $ cd GeoHPC/env
-
-.. Then, we will see that our terminal has the root folder **env** and you can check with command **ls** that it contains a **environment.yml** 
-.. file.
 
 To start, give a quick look to the modules already loaded using:
 
@@ -145,37 +136,56 @@ Be sure that you have added *Tykky* using **module list**, it will tell like in 
     
     *Figure 7. Puhti - Module tykky*
 
+
+Containerize Python environment
+---------------------------------
+
+We will start creating a new folder called **env_container** where we will containerize our Python environment. Simply, 
+use the terminal and the next command line:
+
+.. code-block:: bash
+
+    $ mkdir env_container
+
+You will notice that now you have a new folder like in Figure 8.
+
+.. figure:: img/img8.png
+    
+    *Figure 8. Puhti - A new folder for environment*
+
 Now, we will containerize our environment using *tykky*. We need to specify two directories: 1) the folder directory 
 where you will containerize the environment, and 2) the **environment.yml** file.
 
 The command we will use has the form *conda-containerize new --prefix {folder-directory} {environment.yml}*
 
+Our folder-directory will be our newly created folder **env_container** and the environment 
+file is located in the folder **env** in our cloned repository.
+
 You can use the next command (be sure you replace 200xxxx with your project number):
 
 .. code-block:: bash
 
-    $ conda-containerize new --prefix GeoHPC/env GeoHPC/env/environment.yml
+    $ conda-containerize new --prefix GeoHPC/env_container GeoHPC/env/environment.yml
 
-.. admonition:: Notice!
 
-    If you want to replace an already installed environment you can change the parameter **new** to **update**
+Once the environment is installed you will see the message *Done*. This installation 
+process might take approximately 15 minutes. Your terminal might give a message like in Figure 9.
 
-Once the environment is installed you will see the message *Done*. This installation process might take approximately 15 minutes. Your terminal might give a message like in Figure 8.
-
-.. figure:: img/img8.png
+.. figure:: img/img9.png
     
-    *Figure 7. Puhti - Environment containerized using tykky*
+    *Figure 9. Puhti - Environment containerized using tykky*
 
-If everything looks like this so far you have installed successfully a customized Python environment in HPC. 
-The location of the environment is inside your cloned repository in the folder **env**. Just as a reminder!
+If everything looks like this so far you have installed successfully a customized Python 
+environment in HPC. In the next page you will learn how to use this environment in with Jupyter Notebooks and HPC resources. 
 
-Activate your environment
------------------------------
-...
+.. Activate your environment
+.. -----------------------------
 
-Open Jupyter Notebooks with custom path 
--------------------------------------------
-...
+.. You can use the next command (be sure you replace 200xxxx with your project number):
+
+.. export PATH="/projappl/project_200xxxx/GIT-HPC/env_container/bin:$PATH"
+
+
 
 
 
