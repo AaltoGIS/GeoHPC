@@ -85,4 +85,5 @@ Open the Jupyter Notebook of Lesson 1 from:
 
     /GIT-HPC/GeoHPC/source/lessons/L1/01_ShortestPath-Parallelization.ipynb
 
-If you have reached until here you are able to start the Lesson 1 using HPC resources and a customized environment container.
+If you have reached until here you are able to start the Lesson 1 using HPC resources and a customized environment container. 
+Follow up the instruction in the Jupyter Notebook. Happy coding!.
