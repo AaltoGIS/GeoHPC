@@ -176,7 +176,7 @@ process might take approximately 15 minutes. Your terminal might give a message 
     *Figure 9. Puhti - Environment containerized using tykky*
 
 If everything looks like this so far you have installed successfully a customized Python 
-environment in HPC. In the next page you will learn how to use this environment in with Jupyter Notebooks and HPC resources. 
+environment in HPC. In the next page you will learn how to use this environment with Jupyter Notebooks and HPC resources. 
 
 .. Activate your environment
 .. -----------------------------
