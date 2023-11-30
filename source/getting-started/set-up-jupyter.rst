@@ -33,7 +33,7 @@ For the other parameters, we will reserve 8 cores, 32 GB of processing memory, 6
 Your resources for now should look like Figure 2.
 
 .. figure:: img/img11.png
-    :scale: 60%
+    :scale: 80%
 
     *Figure 2. Puhti - Jupyter configuration*
 
@@ -51,7 +51,7 @@ Then, choose *Lab* as **Jupyter type** and select your **Working directory** whi
 The *Settings* section might look like Figure 3.
 
 .. figure:: img/img12.png
-    :scale: 60%
+    :scale: 80%
     
     *Figure 3. Puhti - Jupyter and Custom Python interpreter*
 
