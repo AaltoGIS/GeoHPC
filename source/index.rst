@@ -55,7 +55,7 @@ Content
    getting-started/set-up-jupyter
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Lesson 1
 
    lessons/L1/01_ShortestPath-Parallelization.ipynb
