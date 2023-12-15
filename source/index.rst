@@ -53,6 +53,7 @@ Content
    getting-started/activate-account
    getting-started/install-env
    getting-started/set-up-jupyter
+   getting-started/desktop-connect
 
 .. toctree::
    :maxdepth: 3
