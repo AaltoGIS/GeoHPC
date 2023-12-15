@@ -79,6 +79,13 @@ In order to run scripts simply activate your **customized environment** installe
 
 You can monitor your resources opening **htop** directly from terminal.
 
+To run scripts simply run like a normal Python script (example).
+
+.. code-block:: bash
+
+    $ python hello-hpc.py
+
+
 Reserve an interactive session
 --------------------------------
 
