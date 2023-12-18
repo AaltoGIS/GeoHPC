@@ -71,7 +71,7 @@ Here you will be able to use the resources of the default disk partition. If you
 Activate your environment
 ---------------------------
 
-In order to run scripts simply activate your **customized environment** installed from the previus lesson `Install customized HPC environment <https://geohpc.readthedocs.io/en/latest/getting-started/install-env.html/>`_.:
+In order to run scripts simply activate your **customized environment** installed from the previous lesson `Install customized HPC environment <https://geohpc.readthedocs.io/en/latest/getting-started/install-env.html/>`_.:
 
 .. code-block:: bash
 
@@ -88,4 +88,20 @@ To run scripts simply run like a normal Python script (example).
 
 Reserve an interactive session
 --------------------------------
+
+When you log in to the supercomputer you will be in a starting node which is shared by all users. 
+The starting node is not intended for heavy computing instead you should use a reserved interactive session. 
+
+An interactive session starts a computing node where user can request specific resources (time, memory, 
+cores, disk). Find more information in the `Interactive Usage Documentation <https://docs.csc.fi/computing/running/interactive-usage/>`_.
+
+In the starting node, type the next command line:
+
+.. code-block:: bash
+
+    $ sinteractive -i
+
+Then, in terminal will be asked the resources you want for your computing node.
+
+Be sure that you have activated your environment. Then, you can simply run scripts and your reserved computing resources.
 
