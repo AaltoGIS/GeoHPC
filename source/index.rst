@@ -61,6 +61,13 @@ Content
 
    lessons/L1/01_ShortestPath-Parallelization.ipynb
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Lesson 2
+
+   lessons/L2/allas-access
+
+
 .. .. toctree::
 ..    :maxdepth: 2
 ..    :caption: Long run development test
