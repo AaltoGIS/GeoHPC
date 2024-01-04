@@ -24,7 +24,7 @@ Start accessing your Terminal in your project_200xxxx directory in Puhti or dire
 
 
 Configure S3 and Allas
----------------------------
+==========================
 
 To configure S3 in your project first you have to add Allas module, type the next command.
 
@@ -47,6 +47,88 @@ Afterwards, it will ask for you **CSC Password** and you will choose the project
     *Figure 1. Allas - S3 connection success*
 
 Connect to Allas using Python
--------------------------------
+================================
 
+Read file from Allas
+-----------------------
+
+If you want to read data directly from your **Bucket** in Allas here is a sample code
+
+.. code-block:: python
+
+    import pandas as pd
+    import boto3
+
+    # create connection s3
+    s3_client = boto3.client("s3", endpoint_url='https://a3s.fi')
+
+    # define bucket name and object name
+    bucket_name = "MyBucket"
+    object_name = "MyFolder/MyFile.csv"
+
+    # read
+    df = pd.read_csv(response.get("Body"), sep=";")
+
+    df.head()
+
+Download file from Allas
+------------------------------
+
+If you want to download data from your **Bucket** in Allas to your local disk. Here a sample code.
+
+.. code-block:: python
+
+    import pandas as pd
+    import boto3    
+
+    # create connection s3
+    s3_resource = boto3.resource('s3', endpoint_url='https://a3s.fi')
+
+    # destination path
+    destination_path = 'MyLocalDisk/MyLocalFolder/MyNewFile.csv'
+
+    # --------------- Save to local
+
+    # define bucket name and object name
+    bucket_name = "MyBucket"
+    object_name = "MyFolder/MyFile.csv"
+
+    s3_resource.Object(bucket_name, object_name).download_file(destination_path)
+
+    print(f'File saved in {destination_path}')
+
+Upload file to Allas
+-----------------------
+
+If you want to upload files from local disk to your new **Bucket** here is a sample code
+
+.. code-block:: python
+
+    import pandas as pd
+    import boto3 
+
+    # create connection s3
+    s3_resource = boto3.resource('s3', endpoint_url='https://a3s.fi')
+
+    # --------------- Save to Allas
+
+    # define bucket name and object name
+    bucket_name = "MyNewBucket"
+    object_name = "MyFolder/MyFile.csv"
+
+    # create a new bucket
+    s3_resource.create_bucket(Bucket=bucket_name)
+
+    # source path
+    source_path = 'MyLocalDisk/MyLocalFolder/MyLocalFile.csv'
+
+    # send to new project
+    s3_resource.Object(bucket_name, object_name).upload_file(source_path)
+
+    # list uploaded files in Bucket
+    my_bucket = s3_resource.Bucket(bucket_name)
+
+    for my_bucket_object in my_bucket.objects.all():
+
+        print(my_bucket_object.key)
 
