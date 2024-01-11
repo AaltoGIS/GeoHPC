@@ -165,6 +165,12 @@ You can use the next command (be sure you replace 200xxxx with your project numb
 
 .. code-block:: bash
 
+    $ conda-containerize new --mamba --prefix GeoHPC/env_container GeoHPC/env/environment.yml
+
+if you find difficulties an alternative is without *mamba*:
+
+.. code-block:: bash
+
     $ conda-containerize new --prefix GeoHPC/env_container GeoHPC/env/environment.yml
 
 

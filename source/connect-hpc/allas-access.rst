@@ -1,12 +1,12 @@
-Access Allas 
-===============
+Manage Allas with Python
+===========================
 
 Allas is a storage server part of CSC resources that can be accessed from anywhere with CSC credentials and internet. 
 Allas storage is allocated by specific project_200xxxx and it can be active while the project is active.
 
 Data files are stored in Buckets (container) and can be accessed with protocol Swift or S3. If you want to know more about Allas take a look the `Allas documentation <https://docs.csc.fi/data/Allas/introduction/>`_. 
 
-In this Lesson we are going to access our data in Allas with the S3 Protocol. We will first configure Allas and S3 and then we will use it in our notebook. If you want to know more about S3 in Allas find examples in the 
+To access our data in Allas with the S3 Protocol we will first configure Allas and S3 and then we will use it in our notebook. If you want to know more about S3 in Allas find examples in the 
 `CSC's S3 connection in Allas (in construction) <https://github.com/CSCfi/csc-user-guide/blob/ktiits-boto3/docs/data/Allas/using_allas/python_boto3.md>`_. 
 
 Start accessing your Terminal in your project_200xxxx directory in Puhti or directly using Jupter Lab. Both options work.
@@ -23,8 +23,8 @@ Start accessing your Terminal in your project_200xxxx directory in Puhti or dire
             👉 Log in to My CSC
 
 
-Configure S3 and Allas
-==========================
+Configure S3 and Allas (Puhti)
+===============================
 
 To configure S3 in your project first you have to add Allas module, type the next command.
 
@@ -46,7 +46,7 @@ Afterwards, it will ask for you **CSC Password** and you will choose the project
     
     *Figure 1. Allas - S3 connection success*
 
-Connect to Allas using Python
+Boto3 functions for Allas
 ================================
 
 Read file from Allas
