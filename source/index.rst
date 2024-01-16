@@ -56,6 +56,12 @@ Content
    getting-started/desktop-connect
 
 .. toctree::
+   :maxdepth: 2
+   :caption: HPC storage
+
+   connect-hpc/allas-access
+
+.. toctree::
    :maxdepth: 3
    :caption: Lesson 1
 
@@ -65,7 +71,7 @@ Content
    :maxdepth: 3
    :caption: Lesson 2
 
-   lessons/L2/allas-access
+   lessons/L2/02_CellularTowers-Parallelization.ipynb
 
 
 .. .. toctree::
