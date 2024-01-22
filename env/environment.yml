@@ -1,4 +1,4 @@
-name: geohpc
+name: GeoHPC
 channels:
   - conda-forge
 dependencies:
@@ -9,15 +9,27 @@ dependencies:
   - scikit-learn
   - osmnx=1.6.0
   - r5py
+  - pyrosm
   - h3pandas
-  - h3-py # comes with h3pandas
+  - h3-py
   - geemap
   - matplotlib
+  - plotly
+  - plotly_express
   - datashader
-  - keplergl # this can be ommited if cause trouble
+  - contextily
+  - keplergl
   - momepy
   - jupyterlab
   - dask-labextension
+  - dask
+  - dask-geopandas
+  - graphviz
+  - xarray
   - htop
-  # - pip
-  #   - routingpy=1.3.0
+  - boto3
+  - rasterio
+  - vaex
+  - pip
+  - lonboard
+    #   - routingpy=1.3.0

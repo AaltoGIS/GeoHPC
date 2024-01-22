@@ -9,7 +9,7 @@
 # from sphinx.util import SkipProgressMessage, progress_message
 
 project = 'Spatial Data Analysis with High Performance Computing (HPC)'
-copyright = 'GIST-Lab (2003), Aalto University'
+copyright = 'GIST-Lab (2023), Aalto University'
 author = 'Bryan R. Vallejo. GIST-Lab - Aalto University'
 release = 'v1'
 
