@@ -84,13 +84,13 @@ Find a detailed structure of the website here.
    :maxdepth: 3
    :caption: Lesson 1
 
-   lessons/L2/02_CellularTowers-Parallelization.ipynb
+   lessons/L1/01_CellularTowers-Parallelization.ipynb
 
 .. toctree::
    :maxdepth: 3
    :caption: Lesson 2
 
-   lessons/L1/01_ShortestPath-Parallelization.ipynb
+   lessons/L2/02_ShortestPath-Parallelization.ipynb
 
 
 
