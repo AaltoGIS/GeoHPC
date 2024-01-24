@@ -92,6 +92,12 @@ Find a detailed structure of the website here.
 
    lessons/L2/02_ShortestPath-Parallelization.ipynb
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Lesson 3 - SYKE
+
+   lessons/L3/03_LandCoverClassification_syke_Parallelization.ipynb
+
 
 
 
