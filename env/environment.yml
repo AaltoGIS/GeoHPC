@@ -17,6 +17,7 @@ dependencies:
   - plotly
   - plotly_express
   - datashader
+  - pydeck
   - contextily
   - keplergl
   - momepy
@@ -24,8 +25,9 @@ dependencies:
   - dask-labextension
   - dask
   - dask-geopandas
-  - graphviz
+  - dask-ml
   - xarray
+  - rioxarray
   - htop
   - boto3
   - rasterio
