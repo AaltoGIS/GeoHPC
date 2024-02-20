@@ -8,11 +8,11 @@ This course is under development by the *GIS Science for Sustainable Transitions
 This lesson is focused in using Parallel Computing resources using Dask-Geopandas.
 By using a global dataset of Cell Tower's locations we will attribute the country to every tower using Spatial Join (Overlay) and estimating the performance of the parallel computing and and single-core computing.
 
-##### Open the lesson here 👉 [Lesson1-Notebook](source\lessons\L1\01_CellularTowers-Parallelization.ipynb)
+##### Open the lesson here 👉 [Lesson1-Notebook](source/lessons/L1/01_CellularTowers-Parallelization.ipynb)
 
 The result:
 
-![map1](source\lessons\L1\img\map-celltowers.png)
+![map1](source/lessons/L1/img/map-celltowers.png)
 
 ## 2. Shortest Path analysis in the Helsinki Region - Home to city center
 This lesson is focused in computing the Shortest Path (parallel in 16 cores) from every available OSM residential buildings in the Helsinki Region to Rautatieasema. The notebook contain a step-by-step guide of the Shortest Path process using the available cores mainly in *Finding the closest nodes*, *Computing the Shortest Path*, and *From nodes to path creation*.
@@ -21,7 +21,7 @@ This lesson is focused in computing the Shortest Path (parallel in 16 cores) fro
 
 The result:
 
-![map2](source\lessons\L2\img\GeoHPC-map1.png)
+![map2](source/lessons/L2/img/GeoHPC-map1.png)
 
 # Attribution
 
