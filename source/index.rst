@@ -64,6 +64,7 @@ Find a detailed structure of the website here.
    :caption: Course information
 
    course-info/introduction
+   course-info/overview
 
 .. toctree::
    :maxdepth: 2
