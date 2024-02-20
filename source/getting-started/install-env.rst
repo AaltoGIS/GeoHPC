@@ -159,19 +159,21 @@ where you will containerize the environment, and 2) the **environment.yml** file
 The command we will use has the form *conda-containerize new --prefix {folder-directory} {environment.yml}*
 
 Our folder-directory will be our newly created folder **env_container** and the environment 
-file is located in the folder **env** in our cloned repository.
+file is located in the folder **env** in our cloned repository. It is recommended to create 
+the containerized environment outside the git folder *GeoHPC* so it is not compromised in case you need update 
+or delete the folder then the environment is not compromised.
 
 You can use the next command (be sure you replace 200xxxx with your project number):
 
 .. code-block:: bash
 
-    $ conda-containerize new --mamba --prefix GeoHPC/env_container GeoHPC/env/environment.yml
+    $ conda-containerize new --mamba --prefix env_container GeoHPC/env/environment.yml
 
 if you find difficulties an alternative is without *mamba*:
 
 .. code-block:: bash
 
-    $ conda-containerize new --prefix GeoHPC/env_container GeoHPC/env/environment.yml
+    $ conda-containerize new --prefix env_container GeoHPC/env/environment.yml
 
 
 Once the environment is installed you will see the message *Done*. This installation 
