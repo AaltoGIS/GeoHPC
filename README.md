@@ -4,32 +4,24 @@ This course is under development by the *GIS Science for Sustainable Transitions
 
 # Lessons
 
-## 1. Shortest Path analysis in the Helsinki Region - Home to city center
+## 1. Cell Tower aggregation by country worldwide
+This lesson is focused in using Parallel Computing resources using Dask-Geopandas.
+By using a global dataset of Cell Tower's locations we will attribute the country to every tower using Spatial Join (Overlay) and estimating the performance of the parallel computing and and single-core computing.
+
+##### Open the lesson here 👉 [Lesson1-Notebook](source\lessons\L1\01_CellularTowers-Parallelization.ipynb)
+
+The result:
+
+![map1](source\lessons\L1\img\map-celltowers.png)
+
+## 2. Shortest Path analysis in the Helsinki Region - Home to city center
 This lesson is focused in computing the Shortest Path (parallel in 16 cores) from every available OSM residential buildings in the Helsinki Region to Rautatieasema. The notebook contain a step-by-step guide of the Shortest Path process using the available cores mainly in *Finding the closest nodes*, *Computing the Shortest Path*, and *From nodes to path creation*.
 
-##### Open the lesson here 👉 [Lesson1-Notebook](source/lessons/L1/01_ShortestPath-Parallel-16cores.ipynb)
+##### Open the lesson here 👉 [Lesson2-Notebook](source/lessons/L2/02_ShortestPath-Parallelization.ipynb)
 
 The result:
 
-![map1](source/lessons/L1/img/GeoHPC-map1.png)
-
-<!-- 
-# Development-test
-
-You can find an example developed for testing the Parallel processing performance with a long processing time example.
-
-## Shortest Path analysis in the Helsinki Region (Long run)
-
-The advantage in processing time using parallelization:
-
-- **16 Core:** 10.56 mins
-- **1 Core:** 90.44 mins
-
-##### Open the example here 👉 [Long run-Notebook](source/lessons/test/01_ShortestPath-LongRun-16cores.ipynb)
-
-The result:
-
-![map1](source/lessons/test/img/GeoHPC-map1.png) -->
+![map2](source\lessons\L2\img\GeoHPC-map1.png)
 
 # Attribution
 
