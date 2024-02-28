@@ -26,6 +26,7 @@ dependencies:
   - jupyterlab=4.0.9
   - dask-labextension
   - dask
+  - graphviz
   - dask-geopandas
   - dask-ml
   - xarray
