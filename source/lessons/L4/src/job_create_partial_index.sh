@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --job-name TDB_partial_index
+#SBATCH --account=project_00
+#SBATCH --time 01:00:00
+#SBATCH --partition=small
+#SBATCH --ntasks=1
+#SBATCH --mem-per-cpu=2G
+#SBATCH --array=0-3
+
+module load geoconda/3.10.9
+
+srun python main_create_partial_index.py ${SLURM_ARRAY_TASK_ID} 4 2005

@@ -99,6 +99,12 @@ Find a detailed structure of the website here.
 
    lessons/L3/03_LandCoverClassification_syke_Parallelization.ipynb
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Lesson 4 - FGI
+
+   lessons/L4/04_MergedTiledVectorData-Parallel.rst
+
 
 
 
