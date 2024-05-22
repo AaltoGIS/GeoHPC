@@ -11,7 +11,7 @@ def count_from_layer(fn_tile, layer_name, join_attribute_name):
 
     with fiona.open(fn_tile, layer=layer_name) as fin:
         for feature in fin:
-            
+
             key = feature.properties[join_attribute_name]
             
             if key in occurences:
