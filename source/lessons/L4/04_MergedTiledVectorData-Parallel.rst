@@ -165,11 +165,55 @@ Preliminaries
 
 To make life easier for us we will create a configuration file that describes the layers that we want to generate. File is already given in the **src** of this repository.
 
+.. code-block:: python
+    :caption: src/settings.py
 
-.. literalinclude:: src/settings.py
-   :caption: src/settings.py
+    layer_specs = {
+        2005: {
+            'path_tiles': '2005_tiles',
+            'join_attribute_name': 'KOHDEOSO',
+            'layers': {
+                0: {
+                    'include_LUOKKA': [35411, 35412, 35421, 35422, 35300],
+                    'filename': '2005_vakavesi.gpkg',
+                    'layername': 'vakavesi',
+                    'geometry_type': 'Polygon'
+                },
+                1: {
+                    'include_LUOKKA': [
+                        42210, 42211, 42212, 42220, 42221, 42222, 42230, 42231,
+                        42232, 42240, 42241, 42242, 42250, 42251, 42252, 42260,
+                        42261, 42262, 42270
+                    ],
+                    'filename': '2005_rakennus.gpkg',
+                    'layername': 'rakennus',
+                    'geometry_type': 'Polygon'
+                }
+            }
+        }
+    }
 
-.. note:: 
+    output_settings = {
+        'path': 'test_out'
+    }
+
+    #
+    # Some checks for the settings.
+    #
+
+    #
+    # Make sure that each layer is going into a separate output file.
+    #
+    for d in layer_specs.values():
+        layer_names = [layer['filename'] for layer in d['layers'].values()]
+        n = len(layer_names)
+        m = len(set(layer_names))
+        if m < n:
+            raise Exception('Outputting different layers to the same file is not implemented.')
+        
+
+
+.. note::
 
     At this point we could use the same output file and write multiple layers into the same GeoPackage. When we move on to parallel processing, having separate output file for each process make life easier.
 
@@ -558,18 +602,42 @@ Running this program produces the final merged layer.
 Moving to Puhti (HPC)
 ==========================
 
+Clone repository
+------------------
+Be sure that you have cloned the repository of this lesson. 
+The Python code needed for this practice is included in the Lesson 4 folder.
+If wanted you can find instructions in the 
+section `Clone the Repository <https://geohpc.readthedocs.io/en/latest/getting-started/install-env.html#clone-the-repository>`_
 
-We are now ready to transfer our program to Puhti supercomputer. 
-For this exercise we assume our username on Puhti is `puhtiuser` and our 
-home directory `/home/users/puhtiuser`, to which `$HOME` translates.
+Find the GeoHPC repository here.
 
-First we need to copy our Python files to Puhti. Let's use directory `$HOME/TDB`.
+.. button-link:: https://github.com/AaltoGIS/GeoHPC
+            :color: primary
+            :shadow:
+            :align: center
+
+            👉 GeoHPC Repository
+
+
+Set up *HOME* folder and data
+--------------------------------
+As a recomendation, set up in your terminal the folder of Lesson 4 ``/projappl/project_200xxxx/GeoHPC/source/lessons/L4`` as your ``$HOME``
+
+You can give a review the tiles in Paituli as it was explained before. 
+For now, add the data folder directly from Allas using the next line.
+
+.. code-block:: bash
+
+    wget -N https://a3s.fi/swift/v1/AUTH_a6b8530017f34af9861fcf45a738ad3f/L4-fgi/2005_tiles.zip && unzip 2005_tiles.zip
+
+
+Once you have navigated in terminal to yor $HOME folder it will have the next resources available.
 
 .. code-block:: bash
 
     $HOME/
     |---fi_nls_ykj_etrs35fin.json
-    |---TDB/
+    |---src/
         |---count_parallel.py
         |---count.py
         |---create_layer_parallel.py
@@ -582,57 +650,76 @@ First we need to copy our Python files to Puhti. Let's use directory `$HOME/TDB`
         |---merge.py
         |---projection.py
         |---utils.py
+    |---2005_tiles
+        |---LM22O2D.ZIP
+        |---LM22P1C.ZIP
 
-There are some major differences in using Puhti compared to running things on your local computer. 
-First is that you should not run any heavy computations interactively. 
-Instead, you describe the work you wish to do in a `job file` and submit this job to the queue. 
-Puhti will then take your job from the queue and run it when there are adequate resources available. 
+Set up settings file
+--------------------------
 
 In this exercise the tasks don't need heavy resources and will probably get executed quite quickly. 
 Second big thing is that you should not use the home directory to store or write large datasets. 
 Instead, there is a separate `scratch` partition for this purpose. 
 The exact path depends on the project you are using, 
-but we assume that the path is ``/scratch/project_00``.
+but we assume that the path is ``/scratch/project_200xxxx``.
 
-We need to adapt our ``settings.py`` to Puhti. 
+We need to adapt our ``settings.py`` to Puhti.
 Mainly, we need to change to path to find the map sheet .zip files and to output directory.
 
-.. literalinclude:: src/settings.py.puhti
+.. literalinclude:: src/settings.py
     :caption: settings.py
     :emphasize-lines: 3,27
 
 Writing a serial job file
-----------------------------
+-------------------------------
+There are some major differences in using Puhti compared to running things on your local computer. 
+First is that you should not run any heavy computations interactively. 
+Instead, you describe the work you wish to do in a `job file` and submit this job to the queue. 
+Puhti will then take your job from the queue and run it when there are adequate resources available. 
 
-There is extensive documentation at `CSC <https://docs.csc.fi/computing/running/creating-job-scripts-puhti/>`_. 
+There is extensive documentation at `CSC job scripts <https://docs.csc.fi/computing/running/creating-job-scripts-puhti/>`_. 
 We will not replicate the whole thing, so use that as a reference.
 
-Let's move in the directory ``$HOME/TDB`` and create our first job file. 
+Let's find in the directory ``$HOME/src`` our first job file and modif it as needed. 
 A job file is actually a Bash script that the queue executes. 
 We request the computing resources for our job via special parameters in the job file.
 
 .. literalinclude:: src/job_list_files.sh
-    :caption: $HOME/TDB/job_list_files.sh
+    :caption: $HOME/src/job_list_files.sh
+
+About python env
+------------------
 
 This is a minimal job file. We give the job some name, the project whose resources we are using, 
 the maximum running time etc. The command ``module load`` loads a module called ``geoconda``. 
-It contains numerous geospatial Python libraries, so we don't need to install anything on Puhti. 
-The module is provided by the Geoportti Research Infrastructure. 
-The final line is the actual program we want to run. 
+
+Geoconda contains numerous geospatial Python libraries, so we don't need to install anything on Puhti. 
+The module is provided by the Geoportti Research Infrastructure. You can readi a bit more in the `CSC Geoconda documentation <https://docs.csc.fi/apps/geoconda/>`_.
+
+The final line in the job file is the actual program we want to run using this environment.
+
+``RUN sbatch serial job``
+-----------------------------
+
 Finally, we push this job in the queue with the command
 
 .. code-block:: bash
 
-    $ sbatch job_list_files.sh
+    $ sbatch src/job_list_files.sh
 
 If we typed everything correctly, the job is now in the queue and will be executed after some time. 
 On our `scratch` directory we should have
 
 .. code-block:: bash
 
-    /scratch/project_00/TDB/2005/
+    /scratch/project_200xxxx/topoDB/2005/
     |---files_2005.pckl
 
+.. warning::
+
+    Exercise works correctly until here. The next step are under correction.
+
+    
 Writing a parallel job file
 --------------------------------
 
@@ -642,17 +729,26 @@ In the previous step we only used a single process to list the input files. Now 
     :caption: $HOME/TDB/job_create_partial_index.sh
     :emphasize-lines: 8,12
 
-This will launch four Python processes. The variable ``${SLURM_ARRAY_TASK_ID}`` has a value of 0, 1, 2, and 3 for the four processes, respectively. The queue system executes each job independently. It is possible that some jobs are finished before other have even started. However, eventually they all get executed and we should have at out `scratch` directory
+``RUN sbatch parallel job``
+-----------------------------
+
+Then, we push this job in the queue with the command
+
+.. code-block:: bash
+
+    $ sbatch src/job_create_partial_index.sh
+
+This will launch four Python processes. The variable ``${SLURM_ARRAY_TASK_ID}`` has a value of 0, 1, 2, and 3 for the four processes, respectively. 
+The queue system executes each job independently. It is possible that some jobs are finished before other have even started. 
+However, eventually they all get executed and we should have at out `scratch` directory
 
 .. code-block:: bash
     :emphasize-lines: 3-6
 
-    /scratch/project_00/TDB/2005/
+    /scratch/project_200xxx/TopoDB/2005/
     |---files_2005.pckl
-    |---index_2005.pckl.0_4
-    |---index_2005.pckl.1_4
-    |---index_2005.pckl.2_4
-    |---index_2005.pckl.3_4
+    |---index_2005.pckl.0_2
+    |---index_2005.pckl.1_2
 
 Now the only things we need to do are:
 
