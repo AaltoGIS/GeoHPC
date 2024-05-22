@@ -1,6 +1,6 @@
 layer_specs = {
     2005: {
-        'path_tiles': '/projappl/project_2009245/GeoHPC/source/lessons/L4/2005_tiles',
+        'path_tiles': '/projappl/project_200xxx/GeoHPC/source/lessons/L4/2005_tiles',
         'join_attribute_name': 'KOHDEOSO',
         'layers': {
             0: {
