@@ -1,6 +1,7 @@
 import os
 
 import fiona
+import fiona.crs
 import shapely.geometry
 
 from merge        import merge_geometries
@@ -63,21 +64,21 @@ def extract_from_layer(
 
     with fiona.open(f'/vsizip/{fn_tile}', 'r', layer=layer_name) as fin:
         for feature in fin:
-            luokka = feature.properties['LUOKKA']
+            luokka = feature['properties']['LUOKKA']
             if not luokka in include_LUOKKA:
                 continue
-            key = feature.properties[join_attribute_name]
+            key = feature['properties'][join_attribute_name]
             geom = project_to_epsg_3067_if_needed(
-                shapely.geometry.shape(feature.geometry))
+                shapely.geometry.shape(feature['geometry']))
             if index[key] == 1:
                 write_buffer_single.append({
                     'geometry': shapely.geometry.mapping(geom),
-                    'properties': feature.properties
+                    'properties': feature['properties']
                 })
             else:
                 write_buffer_parts.append({
                     'geometry': shapely.geometry.mapping(geom),
-                    'properties': feature.properties
+                    'properties': feature['properties']
                 })
 
 
@@ -122,8 +123,8 @@ def extract_features(
     write_buffer_single = []
     write_buffer_parts  = []
 
-    with fiona.open(my_fn_out_single, 'w', driver='GPKG', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.CRS.from_epsg(3067)) as fout_single, \
-         fiona.open(my_fn_out_parts,  'w', driver='GPKG', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.CRS.from_epsg(3067)) as fout_parts:
+    with fiona.open(my_fn_out_single, 'w', driver='GPKG', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.from_epsg(3067)) as fout_single, \
+         fiona.open(my_fn_out_parts,  'w', driver='GPKG', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.from_epsg(3067)) as fout_parts:
         for fn_tile in file_list[rank::procs]:
             print(f'Info: Processing "{fn_tile}"...')
             layer_names = fiona.listlayers(f'/vsizip/{fn_tile}')

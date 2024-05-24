@@ -669,6 +669,7 @@ Mainly, we need to change to path to find the map sheet .zip files and to output
 .. literalinclude:: src/settings.py
     :caption: settings.py
     :emphasize-lines: 3,27
+    
 
 Writing a serial job file
 -------------------------------
@@ -684,8 +685,7 @@ Let's find in the directory ``$HOME/src`` our first job file and modif it as nee
 A job file is actually a Bash script that the queue executes. 
 We request the computing resources for our job via special parameters in the job file.
 
-.. literalinclude:: src/job_list_files.sh
-    :caption: $HOME/src/job_list_files.sh
+
 
 About python env
 ------------------
@@ -698,14 +698,27 @@ The module is provided by the Geoportti Research Infrastructure. You can readi a
 
 The final line in the job file is the actual program we want to run using this environment.
 
-``RUN sbatch serial job``
------------------------------
+1 List files
+------------------------
+
+.. literalinclude:: src/job_list_files.sh
+    :caption: $HOME/src/job_list_files.sh
+
+``RUN sbatch job_list_files.sh``
+----------------------------------
 
 Finally, we push this job in the queue with the command
 
 .. code-block:: bash
 
     $ sbatch src/job_list_files.sh
+
+.. attention::
+
+    If you receive errors in terminal like *Batch script contains DOS line breaks (\r\n)*
+    you might need to run first ``dos2unix src/job_list_files.sh`` and then the line 
+    ``sbatch src/job_list_files.sh``
+
 
 If we typed everything correctly, the job is now in the queue and will be executed after some time. 
 On our `scratch` directory we should have
@@ -715,28 +728,39 @@ On our `scratch` directory we should have
     /scratch/project_200xxxx/topoDB/2005/
     |---files_2005.pckl
 
-.. warning::
 
-    Exercise works correctly until here. The next step are under correction.
 
-    
 Writing a parallel job file
---------------------------------
+----------------------------------
 
-In the previous step we only used a single process to list the input files. Now we will create the occurrence index and be able to finally really benefit from the computing resources of Puhti. Previously we implemented a parallel version of the occurrence index generation. Our implemention takes the ``procs`` and ``rank`` as command line arguments. Does this mean that we must write a separate job file for each process? Luckily, no. We can create all the jobs by using an `array job <https://docs.csc.fi/computing/running/array-jobs/>`_. We describe the work we want to achieve just like before, but in addition we tell how many similar jobs we want to launch, in this example four.
+In the previous step we only used a single process to list the input files. Now we will create the occurrence index and be able to finally really benefit from the computing resources of Puhti. 
+Previously we implemented a parallel version of the occurrence index generation. Our implemention takes the ``procs`` and ``rank`` as command line arguments. 
+Does this mean that we must write a separate job file for each process? Luckily, no. We can create all the jobs by using an `array job <https://docs.csc.fi/computing/running/array-jobs/>`_. 
+We describe the work we want to achieve just like before, but in addition we tell how many similar jobs we want to launch, in this example four.
+
+
+2 Create partial index
+------------------------
+
 
 .. literalinclude:: src/job_create_partial_index.sh
-    :caption: $HOME/TDB/job_create_partial_index.sh
+    :caption: $HOME/src/job_create_partial_index.sh
     :emphasize-lines: 8,12
 
-``RUN sbatch parallel job``
------------------------------
+``RUN sbatch job_create_partial_index.sh``
+--------------------------------------------
 
 Then, we push this job in the queue with the command
 
 .. code-block:: bash
 
     $ sbatch src/job_create_partial_index.sh
+
+.. attention::
+
+    If you receive errors in terminal like *Batch script contains DOS line breaks (\r\n)*
+    you might need to run first ``dos2unix src/job_create_partial_index.sh`` and then the line 
+    ``sbatch src/job_create_partial_index.sh.sh``
 
 This will launch four Python processes. The variable ``${SLURM_ARRAY_TASK_ID}`` has a value of 0, 1, 2, and 3 for the four processes, respectively. 
 The queue system executes each job independently. It is possible that some jobs are finished before other have even started. 
@@ -747,17 +771,153 @@ However, eventually they all get executed and we should have at out `scratch` di
 
     /scratch/project_200xxx/TopoDB/2005/
     |---files_2005.pckl
-    |---index_2005.pckl.0_2
-    |---index_2005.pckl.1_2
+    |---index_2005.pckl.0_4
+    |---index_2005.pckl.1_4
+    |---index_2005.pckl.2_4
+    |---index_2005.pckl.3_4
 
-Now the only things we need to do are:
 
-- Write a serial job file to join the partial index files into the final index.
-- Write a parallel job file to create the partial layers.
-- Write a serial job file to join the partial layers into a final joined layer.
+
+
+
+
+3 Join partial index
+------------------------
+
+.. literalinclude:: src/job_join_partial_index.sh
+    :caption: $HOME/src/job_join_partial_index.sh
+    :emphasize-lines: 9,11
+
+``RUN sbatch job_join_partial_index.sh``
+---------------------------------------------
+
+Then, we push this job in the queue with the command
+
+.. code-block:: bash
+
+    $ sbatch src/job_join_partial_index.sh
+
+.. attention::
+
+    If you receive errors in terminal like *Batch script contains DOS line breaks (\r\n)*
+    you might need to run first ``dos2unix src/job_join_partial_index.sh`` and then the line 
+    ``sbatch src/job_join_partial_index.sh``
+
+
+.. code-block:: bash
+    :emphasize-lines: 3
+
+    /scratch/project_200xxx/TopoDB/2005/
+    |---files_2005.pckl
+    |---index2005.pckl
+    |---index_2005.pckl.0_4
+    |---index_2005.pckl.1_4
+    |---index_2005.pckl.2_4
+    |---index_2005.pckl.3_4
+
+
+
+
+4 Create partial layer
+------------------------
+
+.. literalinclude:: src/job_create_partial_layer.sh
+    :caption: $HOME/src/job_create_partial_layer.sh
+    :emphasize-lines: 8, 12
+
+``RUN sbatch job_create_partial_layer.sh``
+------------------------------------------------
+
+Then, we push this job in the queue with the command
+
+.. code-block:: bash
+
+    $ sbatch src/job_create_partial_layer.sh
+
+.. attention::
+
+    If you receive errors in terminal like *Batch script contains DOS line breaks (\r\n)*
+    you might need to run first ``dos2unix src/job_create_partial_layer.sh`` and then the line 
+    ``sbatch src/job_create_partial_layer.sh``
+
+
+.. code-block:: bash
+    :emphasize-lines: 4-11
+
+    /scratch/project_200xxx/TopoDB/2005/
+    |---files_2005.pckl
+    |---index2005.pckl
+    |---2005_vakavesi.gpkg.0_4_parts
+    |---2005_vakavesi.gpkg.0_4_single
+    |---2005_vakavesi.gpkg.1_4_parts
+    |---2005_vakavesi.gpkg.1_4_single
+    |---2005_vakavesi.gpkg.2_4_parts
+    |---2005_vakavesi.gpkg.2_4_single
+    |---2005_vakavesi.gpkg.3_4_parts
+    |---2005_vakavesi.gpkg.3_4_single
+    |---index_2005.pckl.0_4
+    |---index_2005.pckl.1_4
+    |---index_2005.pckl.2_4
+    |---index_2005.pckl.3_4
+
+5 Join partial layer
+------------------------
+
+In the previous step we only used a single process to list the input files. Now we will create the occurrence index and be able to finally really benefit from the computing resources of Puhti. Previously we implemented a parallel version of the occurrence index generation. Our implemention takes the ``procs`` and ``rank`` as command line arguments. Does this mean that we must write a separate job file for each process? Luckily, no. We can create all the jobs by using an `array job <https://docs.csc.fi/computing/running/array-jobs/>`_. We describe the work we want to achieve just like before, but in addition we tell how many similar jobs we want to launch, in this example four.
+
+.. literalinclude:: src/job_join_partial_layer.sh
+    :caption: $HOME/src/job_join_partial_layer.sh
+    :emphasize-lines: 11
+
+``RUN sbatch job_join_partial_layer.sh``
+------------------------------------------------
+
+Then, we push this job in the queue with the command
+
+.. code-block:: bash
+
+    $ sbatch src/job_join_partial_layer.sh
+
+.. attention::
+
+    If you receive errors in terminal like *Batch script contains DOS line breaks (\r\n)*
+    you might need to run first ``dos2unix src/job_join_partial_layer.sh`` and then the line 
+    ``sbatch src/job_join_partial_layer.sh``
+
+
+.. code-block:: bash
+    :emphasize-lines: 4
+
+    /scratch/project_200xxx/TopoDB/2005/
+    |---files_2005.pckl
+    |---index2005.pckl
+    |---2005_vakavesi.gpkg
+    |---2005_vakavesi.gpkg.0_4_parts
+    |---2005_vakavesi.gpkg.0_4_single
+    |---2005_vakavesi.gpkg.1_4_parts
+    |---2005_vakavesi.gpkg.1_4_single
+    |---2005_vakavesi.gpkg.2_4_parts
+    |---2005_vakavesi.gpkg.2_4_single
+    |---2005_vakavesi.gpkg.3_4_parts
+    |---2005_vakavesi.gpkg.3_4_single
+    |---index_2005.pckl.0_4
+    |---index_2005.pckl.1_4
+    |---index_2005.pckl.2_4
+    |---index_2005.pckl.3_4
+
 
 Wrap-up
--------
+===========
 
-We started by developing a program to merge vector data that was split into sepatere map sheets back into their original form. Then we identified how we could parallelize the program and make the modifications. Finally, we transferred our program to CSC's Puhti supercomputer and wrote the job files that are required to run serial and parallel tasks.
+We started by developing a program to merge vector data that was split into sepatere map sheets back into their original form. 
+Then we identified how we could parallelize the program and make the modifications. 
+Finally, we transferred our program to CSC's Puhti supercomputer and wrote the job files that are required 
+to run serial and parallel tasks.
 
+The steps we did are summarized:
+
+1. Write a serial job file to list files
+2. Write a paralle job file to create parial index 
+3. Write a serial job to join the partial index files into the final index.
+4. Write a parallel job file to create the partial layers.
+5. Write a serial job file to join the partial layers into a final joined layer.
