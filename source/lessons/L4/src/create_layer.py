@@ -1,5 +1,6 @@
 import os
 import fiona
+import fiona.crs
 import shapely.geometry
 
 from merge      import merge_geometries
@@ -25,16 +26,16 @@ def merge_from_layer(
 
     with fiona.open(fn_tile, 'r', layer=layer_name) as fin:
         for feature in fin:
-            luokka = feature.properties['LUOKKA']
+            luokka = feature['properties']['LUOKKA']
             if not luokka in include_LUOKKA:
                 continue
-            key  = feature.properties[join_attribute_name]
+            key  = feature['properties'][join_attribute_name]
             geom = project_to_epsg_3067_if_needed(
-                shapely.geometry.shape(feature.geometry))
+                shapely.geometry.shape(feature['geometry']))
             if index[key] == 1:
                 write_buffer.append({
                     'geometry': shapely.geometry.mapping(geom),
-                    'properties': feature.properties
+                    'properties': feature['properties']
                 })
             else:
                 geometry_buffer[key].append(geom)
@@ -51,7 +52,7 @@ def merge_from_layer(
                     new_features = [
                         {
                             'geometry': shapely.geometry.mapping(g),
-                            'properties': feature.properties
+                            'properties': feature['properties']
                         } for g in merged]
                     write_buffer += new_features
                     #
@@ -100,7 +101,7 @@ def create_merged_layer(
     write_buffer = []
 
     fn_out = os.path.join(path_out, layer_spec['filename'])
-    with fiona.open(fn_out, 'w', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.CRS.from_epsg(3067)) as fout:
+    with fiona.open(fn_out, 'w', driver='GPKG', layer=layer_spec['layername'], schema=schema, crs=fiona.crs.from_epsg(3067)) as fout:
         for fn_tile in file_list:
             print(f'Info: Processing "{fn_tile}"...')
             layer_names = fiona.listlayers(f'/vsizip/{fn_tile}')

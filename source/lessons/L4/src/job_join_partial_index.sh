@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name TDB_join
+#SBATCH --job-name TDB_join_partial_index
 #SBATCH --account=project_200xxxx
 #SBATCH --time 00:10:00
 #SBATCH --partition=small
 #SBATCH --ntasks=1
-#SBATCH --mem-per-cpu=10G
+#SBATCH --mem-per-cpu=2G
 
 module load geoconda/3.10.9
 
-srun python src/main_list_files.py 2005
+srun python src/main_join_partial_indexes.py 4 2005
