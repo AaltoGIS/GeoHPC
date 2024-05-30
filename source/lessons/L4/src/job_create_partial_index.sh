@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name TDB_partial_index
-#SBATCH --account=project_2009245
+#SBATCH --account=project_200xxxx
 #SBATCH --time 01:00:00
 #SBATCH --partition=small
 #SBATCH --ntasks=1
