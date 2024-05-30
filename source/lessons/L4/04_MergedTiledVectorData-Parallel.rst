@@ -700,6 +700,7 @@ The final line in the job file is the actual program we want to run using this e
 
 1 List files
 ------------------------
+Change the `project_200xxx` to your personal project number.
 
 .. literalinclude:: src/job_list_files.sh
     :caption: $HOME/src/job_list_files.sh
@@ -745,7 +746,7 @@ We describe the work we want to achieve just like before, but in addition we tel
 
 .. literalinclude:: src/job_create_partial_index.sh
     :caption: $HOME/src/job_create_partial_index.sh
-    :emphasize-lines: 8,12
+    :emphasize-lines: 3,8,12
 
 ``RUN sbatch job_create_partial_index.sh``
 --------------------------------------------
@@ -786,7 +787,7 @@ However, eventually they all get executed and we should have at out `scratch` di
 
 .. literalinclude:: src/job_join_partial_index.sh
     :caption: $HOME/src/job_join_partial_index.sh
-    :emphasize-lines: 9,11
+    :emphasize-lines: 3,9,11
 
 ``RUN sbatch job_join_partial_index.sh``
 ---------------------------------------------
@@ -823,7 +824,7 @@ Then, we push this job in the queue with the command
 
 .. literalinclude:: src/job_create_partial_layer.sh
     :caption: $HOME/src/job_create_partial_layer.sh
-    :emphasize-lines: 8, 12
+    :emphasize-lines: 3,8, 12
 
 ``RUN sbatch job_create_partial_layer.sh``
 ------------------------------------------------
@@ -867,7 +868,7 @@ In the previous step we only used a single process to list the input files. Now 
 
 .. literalinclude:: src/job_join_partial_layer.sh
     :caption: $HOME/src/job_join_partial_layer.sh
-    :emphasize-lines: 11
+    :emphasize-lines: 3,11
 
 ``RUN sbatch job_join_partial_layer.sh``
 ------------------------------------------------
