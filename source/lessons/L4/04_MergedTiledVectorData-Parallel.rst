@@ -11,6 +11,8 @@ Merging Tiled Vector Data into country-wide layers
 
 .. figure:: img/kuva1.png
 
+    A snapshot of the Topographic Database (TDB). The features located at the edge of the tiles are split into multiple parts and require to be merged for multiple uses.
+
 Introduction
 ------------
 
@@ -19,7 +21,9 @@ out to be an important source of data for numerous use cases. One has been
 change detection, for example the evolution of agricultural areas. Unfortunately
 the NLS provides only the current version of the TDB, any previous versions are not available.
 
-Luckily, CSC has stored a few snapshots from the past years in Paituli service. Unlike the current GeoPackage that the NLS now provides, the older versions are split into regular tiles. Features that happen to be located at the edge of the tiles are split into multiple parts. For many use cases the tiles must be first joined into a single layer and the split parts merged back to their original shape. In addition, in the oldest versions the geometries are in the YKJ coordinate system, whereas the newer ones have switched to ETRS-TM35FIN(E,N).
+Luckily, CSC has stored a few snapshots from the past years in Paituli service. Unlike the current GeoPackage that the NLS now provides, the older versions are split into regular tiles. 
+Features that happen to be located at the edge of the tiles are split into multiple parts. For many use cases the tiles must be first joined into a single layer and the split parts merged 
+back to their original shape. In addition, in the oldest versions the geometries are in the YKJ coordinate system, whereas the newer ones have switched to ETRS-TM35FIN(E,N).
 
 As a Geoportti service the tiles have been merged back into country-wide layers which are available in Paituli as well. In this exercise we go through one way this can be achieved.
 
@@ -31,6 +35,13 @@ In practise there are numerous different approaches to achieve this. The actual 
 For example, we will be writing intermediate results on disks, which is something to avoid if speed is crucial for the use case. 
 However, our approach is easy to implement and it is easy to see what has happened after each step. 
 We will consider only polygon geometries, but line features can be joined in a similar manner.
+
+**Note!** 
+
+This exercise contains a first section where the user will run the code in the local computer. During this local test, the 
+process is not running in parallel. The purpose in running locally is to learn the use of terminal and scripts. Then, it contains a 
+parallelization strategy based on indexes to facilitate the understanding before starting with the supercomputer. 
+
 
 Python code 
 ----------------
@@ -50,14 +61,28 @@ Python code
 
                 👉 Download Python code
 
-Data
--------
+Data download
+---------------
 
-Each tile in the dataset is a zip file that contains several shapefiles, `check the naming and the contents of the shapefiles <https://etsin.fairdata.fi/dataset/8afb7771-f7d1-4030-85fd-b9271d81b298>`_. In the oldest snapshots the geometries are stored in YKJ coordinate system, the newer ones are in ETRS-TM35FIN(E,N). Each original feature had a unique ``KOHDEOSO`` attribute. If the feature has been split into several tiles, each part in the tiled version has the same value. We will take advantage of this in the process.
+Each tile in the dataset is a zip file that contains several shapefiles, `check the naming and the contents of the shapefiles <https://etsin.fairdata.fi/dataset/8afb7771-f7d1-4030-85fd-b9271d81b298>`_. 
+In the oldest snapshots the geometries are stored in YKJ coordinate system, the newer ones are in ETRS-TM35FIN(E,N). Each original feature had a unique ``KOHDEOSO`` attribute. 
+If the feature has been split into several tiles, each part in the tiled version has the same value. We will take advantage of this in the process.
 
 .. figure:: img/kuva1.png
 
-    Some features at the edges of two tiles, colored by their ``LUOKKA`` attribute. On the right the features with the same ``KOHDEOSO`` attribute are merged.
+    Al left, the features at the edges of two tiles, colored by their ``LUOKKA`` attribute. On the right, the features with the same ``KOHDEOSO`` attribute are merged.
+
+Download test file from Paituli.
+
+  - Create a directory ``2005_tiles`` into the working directory
+  - Download files ``LM22O2D.ZIP`` and ``LM22P1C.ZIP`` from `Paituli <https://paituli.csc.fi/download.html>`_
+
+    - In the interface: *National Land Survey of Finland, Topographic Database, 2005, SHAPE*.
+    - In the box below, select the `Links` tab and go to the http address to access the tiles directly (*as image below*)
+
+.. figure:: img/paituli-data.png
+
+    Paituli interfaces and tiled vector data template
 
 Work plan
 -----------
@@ -103,7 +128,7 @@ Hands on coding (Local)
 ===========================
 
 Setting up the exercise environment
------------------------------------
+-------------------------------------
 
 It is usually a good idea to start the development of a workflow with a small sample dataset. In that way you can rerun the analyses quickly and fix all simple and obvious issues fast. Therefore we will create a test environment for ourselves:
 
@@ -122,17 +147,7 @@ It is usually a good idea to start the development of a workflow with a small sa
 
 - Check the `tinshift <https://github.com/OSGeo/PROJ-data/blob/master/fi_nls>`_ file **fi_nls_ykj_etrs35fin.json**. Download the raw file as *json*. The File is already given in the **src** folder.
 
-- Download test file from Paituli.
-
-  - Create a directory ``2005_tiles`` into the working directory
-  - Download files ``LM22O2D.ZIP`` and ``LM22P1C.ZIP`` from `Paituli <https://paituli.csc.fi/download.html>`_
-
-    - In the interface: *National Land Survey of Finland, Topographic Database, 2005, SHAPE*.
-    - In the box below, select the `Links` tab and go to the http address to access the tiles directly (*as image below*)
-
-.. figure:: img/paituli-data.png
-
-    Paituli interfaces and tiled vector data template
+- Be sure that your test data is in the folder `2005_tiles`
 
 Your working directory (can be anything, we use ``L4`` in this example) should now look like this:
 
