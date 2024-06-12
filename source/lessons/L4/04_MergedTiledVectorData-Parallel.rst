@@ -173,6 +173,7 @@ When we iterate over the features from a tile, we have no easy way of knowing if
 .. attention::
 
    If we could not use the ``KOHDEOSO`` attribute, are there any other ways we could use to determine if the given feature is a part of a larger original feature?
+   `Find the answer <04_MergedTiledVectorData-Parallel.html#questions-and-answers>`_
 
 
 Preliminaries
@@ -250,6 +251,7 @@ In this step we will go though the features in each tile and count the occurrenc
 .. attention::
 
     Is it possible that some ``KOHDEOSO`` appears only once but the feature was split anyway?
+    `Find the answer <04_MergedTiledVectorData-Parallel.html#questions-and-answers>`_
 
 The tiles are .zip files that contain several .shp files and the related auxiliary files. In theory we would first need to extract the files from a .zip file, analyse the layers, and optionally delete the extracted files before moving on to the next .zip file. Luckily, we can cut some corners because GDAL is able to read data from inside .zip files automatically using the VSIZIP Virtual File System:
 
@@ -321,7 +323,9 @@ Let's test it:
 
 .. attention::
 
-    Q: One ``KOHDEOSO`` attribute value may appear in multiple tiles, but how is it possible that one tile contains many features with the same ``KOHDEOSO`` attribute value?
+    Q: One ``KOHDEOSO`` attribute value may appear in multiple tiles, but how is it possible that one tile 
+    contains many features with the same ``KOHDEOSO`` attribute value?
+    `Find the answer <04_MergedTiledVectorData-Parallel.html#questions-and-answers>`_
 
 Next we introduce two more functions, one to count the occurrences from all the layers in a .zip file, and another to handle all the .zip files in a given path:
 
@@ -349,7 +353,7 @@ This means that in the output the ``KOHDEOSO`` may not be unique for each featur
 .. attention::
 
    - The original features are all single geometries. How can the merging result into a multigeometry?
-   - In what other ways we could handle the possible multigeometries?
+   - In what other ways we could handle the possible multigeometries? `Find the answer <04_MergedTiledVectorData-Parallel.html#questions-and-answers>`_
 
 Let's start by writing the functions that will merge a list of geometries into a multigeometry.
 
@@ -392,7 +396,9 @@ We now have all the tools to write the functions that iterate over the different
     :caption: src/create_layer.py
 
 .. attention::
-   When creating the joined layer, we iterate over all the layers in the zip files. Does this make sense, or could we skip some layers which will not contain features that we are interested in at the moment?
+   When creating the joined layer, we iterate over all the layers in the zip files. Does this make sense, or 
+   could we skip some layers which will not contain features that we are interested in at the moment?
+   `Find the answer <04_MergedTiledVectorData-Parallel.html#questions-and-answers>`_
 
 To wrap it all up, we write the main function to execute the necessary functions
 
@@ -930,10 +936,50 @@ Then we identified how we could parallelize the program and make the modificatio
 Finally, we transferred our program to CSC's Puhti supercomputer and wrote the job files that are required 
 to run serial and parallel tasks.
 
-The steps we did are summarized:
+The steps we did in the supercoputer are summarized:
 
 1. Write a serial job file to list files
 2. Write a paralle job file to create parial index 
 3. Write a serial job to join the partial index files into the final index.
 4. Write a parallel job file to create the partial layers.
 5. Write a serial job file to join the partial layers into a final joined layer.
+
+Questions and answers
+-------------------------
+
+.. attention::
+
+   If we could not use the ``KOHDEOSO`` attribute, are there any other ways we could use to determine if the given feature is a part of a larger original feature?
+
+We could try to inspect the geometries and identify which one are connected and assume that they are part of the same original feature. 
+However, this simple approach will fail because often individual features are touching or overlapping. We should only connect features that share a 
+straight vertical or horizontal edge (at the edges of the map sheets).
+
+.. attention::
+
+    Is it possible that some ``KOHDEOSO`` appears only once but the feature was split anyway?
+
+This is possible if, for example, some of the tiles are missing.
+
+.. attention::
+
+    One ``KOHDEOSO`` attribute value may appear in multiple tiles, but how is it possible that one tile contains many features with the same ``KOHDEOSO`` attribute value?
+
+This is possible with long features (e.g. streams) that first exit the map sheet and enter it again later.
+
+.. attention::
+
+   - The original features are all single geometries. How can the merging result into a multigeometry?
+   - In what other ways we could handle the possible multigeometries?
+
+- Same as previous, if a part of a long feature is missing, it cannot be represented as a single polygon.
+- One possibility would be to store final features as single geometries, but in some cases this might lead into duplicate KOHDEOSO attributes in the final dataset.
+
+.. attention::
+   When creating the joined layer, we iterate over all the layers in the zip files. Does this make sense, or could we skip some layers which will not contain features that we are interested in at the moment?
+
+Each zip file contains only certain types of geometries (points, lines, polygons) which is indicated by the filename. We could use this to skip reading some files based on the layer we are generating.
+
+
+
+
