@@ -66,6 +66,9 @@ If you want to read data directly from your **Bucket** in Allas here is a sample
     bucket_name = "MyBucket"
     object_name = "MyFolder/MyFile.csv"
 
+    # Read data to memory before opening with Pandas
+    response = s3_client.get_object(Bucket=bucket_name, Key=object_name)
+
     # read
     df = pd.read_csv(response.get("Body"), sep=";")
 
