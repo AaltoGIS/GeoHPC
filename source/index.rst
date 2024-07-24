@@ -105,6 +105,11 @@ Find a detailed structure of the website here.
 
    lessons/L4/04_MergedTiledVectorData-Parallel.rst
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Lesson 5 - Overture Maps
+
+   lessons/L5/05_OvertureMaps-POI-Parallelization.ipynb
 
 
 
