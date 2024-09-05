@@ -6,19 +6,26 @@
 .. figure:: _static/web-banner.png
 
 
-The **Spatial Data Science with High Performance Computing (HPC)** web is a course 
+The **Spatial Data Science with High Performance Computing (HPC)** website is
 designed for students, professionals, and especially personnel of higher-education 
-institutions in Finland who are working with CSC's supercomputers and willing 
+institutions in Finland who are working with `CSC Finland's supercomputers <https://csc.fi/en/>`__ and interested
 to use the computational resources in *Parallel* for *Spatial Data Science* processes 
-with Python. 
+with Python. Although the website has a focus on utilizing CSC Finland's computing resources, the parallelization operations
+work similarly on other computing clusters as well. Thus, the lessons can be useful for anyone who has access to some sort of
+computing cluster to distribute their computations.
 
-The course is composed by a short **Introduction** to CSC's resources and followed by 
+The website is composed of a short **Introduction** to CSC's resources and followed by
 a **Getting started** section where you will find briefly how to set up a HPC environment 
-for further processes. Then, short examples of how to use the **HPC storage** in case you 
-want to use it straightforward. Finally, you will see separated **Lessons** with different 
-*Spatial Data Processes* using HPC resources in Parallel showing how supercomputers can 
-facilitate your work using the right Python programing tools.
+for further processes (only applicable for CSC Finland's clients).
+Then, short examples of how to use the **HPC storage** in case you
+want to use it straightforward. Finally, the website contains various **Lessons** with different
+*Spatial Data Processes* using HPC resources in parallel showing how supercomputers can
+facilitate your work using specific Python programing tools designed for parallel processing.
 
+The resources on this website are part of `Geoportti Research Infrastructure <https://www.geoportti.fi>`__ which is
+a shared service for researchers, teachers, and students using geospatial data and geocomputing tools.
+Geoportti RI helps the researchers in Finland to use, to refine, to preserve, and to share their geospatial resources.
+Learn more about `Geoportti RI services <http://www.geoportti.fi/services/>`__.
 
 Prerequirements
 -----------------
@@ -30,21 +37,21 @@ and some programing skills. I a more specific specific way as next:
 - Basic spatial algorithms knowledge
 - Basic CSC's set up knowledge especifically for Puhti supercomputer (Optional)
 
-The intructions about how to access and set up Puhti supercomputer are included so in case 
+The instructions about how to access and set up Puhti supercomputer are included so in case
 you haven't used it before you will be able to.
 
 Course format
 ----------------
 The course start with **Introduction** for theoretical overview of HPC resources and it continues 
-with a **Getting started** section that will show you how to acess and create an online session 
+with a **Getting started** section that will show you how to access and create an online session
 in you browser for using the HPC computational resources for the Lessons. Then, it has a previous 
-overview of how to manage Allas **HPC storage** in case you need for your projects (nice to have), 
+overview of how to manage Allas **HPC storage** in case you need it for your project.
 and then the Lessons starts where you can see an overview on the web.
 
 Running Lessons
 ------------------
 
-Once you have cloned and installed the environment especified in the section 
+Once you have cloned and installed the environment specified in the section
 **Installing customized HPC environment** you will be able to run the Lessons 
 located under the folder:
 
@@ -119,17 +126,3 @@ Find a detailed structure of the website here.
 
 ..    lessons/test/01_ShortestPath-LongRun-16cores.ipynb
 
-
-
-
-
-
-
-
-
-
-
-..
-   * :ref:`genindex`
-   * :ref:`modindex`
-   * :ref:`search`
