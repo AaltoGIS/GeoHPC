@@ -60,7 +60,7 @@ To download all the materials on this website, you can use Git to clone the repo
 Alternatively, you can download the files as a `ZipFile <https://github.com/AaltoGIS/GeoHPC/archive/refs/heads/master.zip>`__.
 
 Once you have cloned and installed the environment specified in the section
-**Installing customized HPC environment** you will be able to run the Lessons 
+:doc:`Installing customized HPC environment <getting-started/install-env>` you will be able to run the Lessons
 located under the folder:
 
 .. code-block:: bash

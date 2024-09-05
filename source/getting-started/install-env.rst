@@ -5,7 +5,7 @@ Install customized HPC env
 
    The following assumes that you have access to CSC Finland's computing resources. In case you do not have access to CSC's resources,
    you can still install all the required Python libraries used in the lessons by installing the `environment.yml <https://github.com/AaltoGIS/GeoHPC/blob/master/env/environment.yml>`__
-   using mamba/micromamba/miniconda package managers.
+   using mamba/micromamba/miniconda package managers. If you are new to Python's package managers, you can `learn more from here <https://pythongis.org/part1/chapter-01/nb/06-installation.html>`__.
 
 
 Log in to Puhti

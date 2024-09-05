@@ -1,10 +1,18 @@
 Set up a Jupyter Notebook
 ===========================
 
+.. note::
+
+   The following assumes that you have access to CSC Finland's computing resources. In case you do not have access to CSC's resources,
+   you can still install JupyterLab and all the required Python libraries used in the lessons by installing the `environment.yml <https://github.com/AaltoGIS/GeoHPC/blob/master/env/environment.yml>`__
+   using mamba/micromamba/miniconda package managers. Learn more about `installing packages from here <https://pythongis.org/part1/chapter-01/nb/06-installation.html>`__
+   and `running a JupyterLab <https://pythongis.org/part1/chapter-01/nb/06-installation.html#running-jupyterlab>`__ on your own computer.
+
+
 The Puhti supercomputer has a user interface that allows you to access different applications like *Visual Studio Code*, 
 *Julia*, *MATLAB*, *MLflow*, *RStudio*, *TensorBoard*, and the one we will use *Jupyter*. 
 
-To access the **Jupyter** application you can simply navigate to the User Interface menu in the Puhti dashboard or 
+To access the **JupyterLab** application you can simply navigate to the User Interface menu in the Puhti dashboard or
 opening the **Apps** menu in the upper menu. If are logged in you can access to the dashboard using this link: 
 
 .. admonition:: CSC Puhti dashboard!
@@ -18,7 +26,7 @@ opening the **Apps** menu in the upper menu. If are logged in you can access to 
 
             👉 Puhti dashboard!
 
-Simply, to start the **Jupyter Notebook** click on the **Jupyter** button, like in Figure 1. 
+Simply, to start the **JupyterLab** click on the **Jupyter** button, like in Figure 1.
 
 .. figure:: img/img10.png
     
