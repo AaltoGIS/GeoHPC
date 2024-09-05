@@ -51,6 +51,14 @@ and then the Lessons starts where you can see an overview on the web.
 Running Lessons
 ------------------
 
+To download all the materials on this website, you can use Git to clone the repository:
+
+.. code-block:: bash
+
+    $ git clone https://github.com/AaltoGIS/GeoHPC.git
+
+Alternatively, you can download the files as a `ZipFile <https://github.com/AaltoGIS/GeoHPC/archive/refs/heads/master.zip>`__.
+
 Once you have cloned and installed the environment specified in the section
 **Installing customized HPC environment** you will be able to run the Lessons 
 located under the folder:
@@ -68,7 +76,7 @@ Find a detailed structure of the website here.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Course information
+   :caption: Presentations
 
    course-info/introduction
    course-info/overview
