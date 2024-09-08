@@ -30,7 +30,7 @@ Learn more about `Geoportti RI services <http://www.geoportti.fi/services/>`__.
 Prerequirements
 -----------------
 The HPC Lessons requires previous knowledge in spatial algorithms (Spatial Analysis) 
-and some programing skills. I a more specific specific way as next:
+and some programing skills. In a more specific specific way as next:
 
 - Medium/Advanced Python programming skills
 - Basic knowledge on Jupyter Lab
