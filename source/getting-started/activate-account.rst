@@ -5,6 +5,7 @@ Self guided access
 ----------------------
 
 To get access to HPC resources at CSC you can start by: 
+
 1. `Creating your CSC account <https://docs.csc.fi/accounts/how-to-create-new-user-account/>`_
 2. `Join / Create a new project (Academic) <https://docs.csc.fi/accounts/how-to-create-new-project/>`_
 3. `Enable Puhti and Allas <https://docs.csc.fi/accounts/how-to-add-service-access-for-project/>`_

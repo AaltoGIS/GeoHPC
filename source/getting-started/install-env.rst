@@ -16,7 +16,7 @@ is to log in in the **CSC Puhti supercomputer**.
 
 .. admonition:: CSC Puhti!
 
-    To log in to Puhti supercomputer you need a *CSC account* or *HAKA* credentials.
+    To log in to the web interface of Puhti supercomputer you need a *CSC account* or *HAKA* credentials.
 
     .. button-link:: https://www.puhti.csc.fi/public/welcome.html
             :color: primary
@@ -26,30 +26,41 @@ is to log in in the **CSC Puhti supercomputer**.
             👉 Log in to Puhti
 
 
+Directories overview
+----------------------
+
+You will find three different spaces in the Diretory. Each of them can be used in different needs due to its capacity.
+
+- home with **10 GB capacity** for personal files
+- projappl with **50 GB capacity** for intermediate processes
+- scratch with **1 TB capacity** for big output
+
+We will proceed using projappl to install our personal environment.
+
+
 Create your personal folder
 -----------------------------
 
-Once you are logged in you will see the *User Interface* of Puhti that contains that Apps that you can connect the HPC resources (Figure 1). 
-We are going to install a containerized Python environment in our **Home Directory** that later on will be connected to **Jupyter Lab**. 
+Once you are logged in you will see the *User Interface* of Puhti that shows the Apps you can use with HPC (Figure 1). 
+We are going to install a containerized Python environment in our **projappl** directory that later on will be connected to **Jupyter Lab**. 
 
-Start opening the **Home Directory**
+Start opening the **projappl** Directory
 
 .. figure:: img/img1.png
     
     *Figure 1. Puhti - User Interface*
 
-Once you have opened the **Home Directory**, in the left side, you will see the code of your project like *project_200xxxx* 
+Once you have opened the **projappl Directory**, in the left side, you will see the code of your project like *project_200xxxx* 
 in two different Disk section like **projappl** and **scratch**. You should know that the scratch Disk must be used temporary 
 because it has a regular clean up (every 180 days) meanwhile the projappl Disk has no clean up. In the projappl Disk 
 the capacity is 50GiB and in the scratch Disk the capacity is 1TiB. You can read more about the 
-Disk partition in `CSC Disk areas <https://docs.csc.fi/computing/disk/>`_. For the lesson, feel free 
-to use any of **scratch** or **projappl**. 
+Disk partition in `CSC Disk areas <https://docs.csc.fi/computing/disk/>`_. For the lesson, use **projappl**. 
 
 Start creating a new folder called **GIT-HPC** (Figure 2).
 
 .. figure:: img/img2.png
     
-    *Figure 2. Puhti - Home Directory personal set up*
+    *Figure 2. Puhti - projappl Directory personal set up*
 
 
 Clone the repository
@@ -106,42 +117,29 @@ Finally you can clear the terminal (optionally) using the command:
 
     $ clear
 
-Install *Tykky* module
+Enable *Tykky* module
 -------------------------
 
 The Tykky module is a container wrapper that helps to install software in HPC. It can be used to containerize a conda environment 
 using an **environment.yml** file. We will activate the Tykky module and install a customized environment that we will use further 
 with our notebooks.
 
-To start, give a quick look to the modules already loaded using:
 
-.. code-block:: bash
-
-    $ cd module list
-
-.. figure:: img/img6.png
-    
-    *Figure 6. Puhti - Modules*
-
-Then, you will remove all modules:
-
-.. code-block:: bash
-
-    $ module --force purge
-
-If you check again with **module list** you will notice that there are no modules loaded.
-
-Then, add *Tykky* module:
+Enable *Tykky* module:
 
 .. code-block:: bash
 
     $ module add tykky
 
-Be sure that you have added *Tykky* using **module list**, it will tell like in Figure 7.
-
-.. figure:: img/img7.png
+Be sure that you have added *Tykky* using **module list**, it will tell like in Figure 6.
     
-    *Figure 7. Puhti - Module tykky*
+.. code-block:: bash
+
+    $ module list
+
+.. figure:: img/img6.png
+    
+    *Figure 6. Puhti - Modules*
 
 
 Containerize Python environment
@@ -154,33 +152,25 @@ use the terminal and the next command line:
 
     $ mkdir env_container
 
-You will notice that now you have a new folder like in Figure 8.
+You will notice that now you have a new folder like in Figure 7.
 
 .. figure:: img/img8.png
     
-    *Figure 8. Puhti - A new folder for environment*
+    *Figure 7. Puhti - A new folder for environment*
 
-Now, we will containerize our environment using *tykky*. We need to specify two directories: 1) the folder directory 
-where you will containerize the environment, and 2) the **environment.yml** file.
+Now, we will containerize our environment using *tykky*. We need to specify two paths: 1) the directory 
+where you will containerize the environment, and 2) the **environment.yml** file path.
 
-The command we will use has the form *conda-containerize new --prefix {folder-directory} {environment.yml}*
+The command we will use has the form *conda-containerize new --prefix {directory} {environment.yml}*
 
 Our folder-directory will be our newly created folder **env_container** and the environment 
 file is located in the folder **env** in our cloned repository. It is recommended to create 
 the containerized environment outside the git folder *GeoHPC* so it is not compromised in case you need update 
 or delete the folder then the environment is not compromised.
 
-You can use the next command (be sure you replace 200xxxx with your project number):
-
 .. code-block:: bash
 
     $ conda-containerize new --mamba --prefix env_container GeoHPC/env/environment.yml
-
-if you find difficulties an alternative is without *mamba*:
-
-.. code-block:: bash
-
-    $ conda-containerize new --prefix env_container GeoHPC/env/environment.yml
 
 
 Once the environment is installed you will see the message *Done*. This installation 
@@ -188,7 +178,7 @@ process might take approximately 15 minutes. Your terminal might give a message 
 
 .. figure:: img/img9.png
     
-    *Figure 9. Puhti - Environment containerized using tykky*
+    *Figure 8. Puhti - Environment containerized using tykky*
 
 If everything looks like this so far you have installed successfully a customized Python 
 environment in HPC. In the next page you will learn how to use this environment with Jupyter Notebooks and HPC resources. 
