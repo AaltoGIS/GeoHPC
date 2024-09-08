@@ -10,8 +10,8 @@ dependencies:
   - scikit-learn
   - scikit-image
   - osmnx=1.6.0
-  - r5py
-  - pyrosm
+  # - r5py
+  # - pyrosm
   - h3pandas
   - h3-py
   - geemap
@@ -43,7 +43,7 @@ dependencies:
   - xgboost
   - tqdm
   - numba
-  - pytorch
+  # - pytorch
   - pip
   - pip:
     - overturemaps
