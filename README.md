@@ -36,6 +36,30 @@ The result:
 ![map3](source/lessons/L3/img/Close-up.png)
 
 
+## 4. Merging Tiled Vector Data into country-wide layers
+This lesson is focused in a simple method to split a problem into smaller sub-problems that can be solved in parallel using Slurm scheduler (sbatch). It uses tile vector information from Paituli and the Topographic Data Base (TDB) 
+of the National Land Survey (NLS). As a Geoportti service the tiles have been merged back into country-wide layers which are available in Paituli as well. In this exercise we go through one way this can be achieved.
+
+##### Open the lesson here 👉 [Lesson4-Notebook](source/lessons/L4/04_MergedTiledVectorData-Parallel.rst)
+
+
+The result:
+
+![map4](source/lessons/L4/img/kuva1.png)
+
+
+## 5. OvertureMaps Data - From Local to Global analysis with Arrow
+In this Lesson, we will fetch Overture Maps data from the local level in Helsinki and the national level of Finland using tags like Buildings and Points of Interest (POI). Then, we will escalate the fetching process at the global level using grids and storing data in parquet format on our local disk. We will do an count analysis 
+using a global dataset. This exercise can help downloading data in parallel and reading big data with in-memory libraries like Arrow.
+
+##### Open the lesson here 👉 [Lesson5-Notebook](https://geohpc.readthedocs.io/en/latest/lessons/L5/05_OvertureMaps-POI-Parallelization.html)
+
+
+The result:
+
+![map4](source/lessons/L5/img/buildings.png)
+
+
 
 # Attribution
 
