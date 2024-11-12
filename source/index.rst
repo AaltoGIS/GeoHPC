@@ -82,6 +82,12 @@ Find a detailed structure of the website here.
    course-info/overview
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Webinars
+
+   webinars/geohpc-webinar-2024
+
+.. toctree::
    :maxdepth: 2
    :caption: Getting started
 
