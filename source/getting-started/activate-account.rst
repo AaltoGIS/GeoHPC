@@ -1,7 +1,21 @@
-Activate CSC resources
-=========================
+Get acess to CSC resources
+==============================
 
-To start using CSC computational resources you need to accept beforehand a **Project** in **My CSC**. 
+Self guided access
+----------------------
+
+To get access to HPC resources at CSC you can start by: 
+
+1. `Creating your CSC account <https://docs.csc.fi/accounts/how-to-create-new-user-account/>`_
+2. `Join / Create a new project (Academic) <https://docs.csc.fi/accounts/how-to-create-new-project/>`_
+3. `Enable Puhti and Allas <https://docs.csc.fi/accounts/how-to-add-service-access-for-project/>`_
+
+Invited Access
+----------------
+
+To start using CSC computational resources you need to accept beforehand a **Project** in **My CSC** by a Project administrator 
+from your institution. 
+
 Start logging in to My CSC.
 
 .. admonition:: My CSC!

@@ -33,12 +33,13 @@ Simply, to start the **JupyterLab** click on the **Jupyter** button, like in Fig
     *Figure 1. Puhti - Dashboard and Jupyter*
 
 Then, you will see how the *Jupyter session* starts where you can set up the resources for your Jupyter Notebook.
-Be sure you have selected your own **project** like *project_200xxxx*. In this case, we are using **partition** small which has maximum 40 cores 
-which is more than enough for our need. If you are willing to know more about the partitions find it in the 
+Be sure you have selected your own **project** like *project_200xxxx*. In this case, we are using **partition** interactive which has maximum 8 cores 
+which is enough for our need. If you are willing to know more about the partitions find it in the 
 `Puhti Partitions Documentation <https://docs.csc.fi/computing/running/batch-job-partitions/>`_.
 
 For the other parameters, we will reserve 8 cores, 32 GB of processing memory, 60 GB of local disk, and 2 hours of availability. 
-Your resources for now should look like Figure 2.
+Your resources for now should look like Figure 2. Be sure that you are using your resources personally. If more people is sharing resources 
+this configuration is not optimal and you must decrease resources.
 
 .. figure:: img/img11.png
     :scale: 80%
@@ -54,7 +55,8 @@ Copy and paste the location of the environment from here (be sure you replace 20
 
     /projappl/project_200xxxx/GIT-HPC/env_container/bin/python
 
-Then, choose *Lab* as **Jupyter type** and select your **Working directory** which should be under *projappl*.
+Then, choose *Lab* as **Jupyter type** and select your **Working directory** which should be under *projappl* or *scratch* 
+if you plan to write a large amount of results.
 
 The *Settings* section might look like Figure 3.
 
