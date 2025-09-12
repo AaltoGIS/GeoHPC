@@ -18,7 +18,7 @@ is to log in in the **CSC Puhti supercomputer**.
 
     To log in to the web interface of Puhti supercomputer you need a *CSC account* or *HAKA* credentials.
 
-    .. button-link:: https://www.puhti.csc.fi/public/welcome.html
+    .. button-link:: https://www.puhti.csc.fi/public/
             :color: primary
             :shadow:
             :align: center
