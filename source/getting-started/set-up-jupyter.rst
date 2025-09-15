@@ -38,8 +38,11 @@ which is enough for our need. If you are willing to know more about the partitio
 `Puhti Partitions Documentation <https://docs.csc.fi/computing/running/batch-job-partitions/>`_.
 
 For the other parameters, we will reserve 8 cores, 32 GB of processing memory, 60 GB of local disk, and 2 hours of availability. 
-Your resources for now should look like Figure 2. Be sure that you are using your resources personally. If more people is sharing resources 
-this configuration is not optimal and you must decrease resources.
+Your resources for now should look like Figure 2. Be sure that you are using your resources personally. 
+
+.. note::
+
+   If more people is sharing resources this configuration is not optimal and you must decrease resources.
 
 .. figure:: img/img11.png
     :scale: 80%
@@ -55,7 +58,7 @@ Copy and paste the location of the environment from here (be sure you replace 20
 
     /projappl/project_200xxxx/GIT-HPC/env_container/bin/python
 
-Then, choose *Lab* as **Jupyter type** and select your **Working directory** which should be under *projappl* or *scratch* 
+Then, choose *Lab* as **Jupyter type** and select your **Working directory**. It is recommended to use the disk *scratch* for working especially 
 if you plan to write a large amount of results.
 
 The *Settings* section might look like Figure 3.

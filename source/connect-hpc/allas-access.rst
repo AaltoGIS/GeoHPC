@@ -124,3 +124,10 @@ If you want to upload files from local disk to your new **Bucket** here is a sam
 
         print(my_bucket_object.key)
 
+
+GDAL-based Python libraries
+----------------------------
+
+S3 and Allas support GDAL-based Python libraries like **rasterio** or **geopandas**. 
+
+See an example part of `CSC's Geocomputing <https://github.com/csc-training/geocomputing/blob/master/python/allas/working_with_allas_from_Python_S3.py>`_. 

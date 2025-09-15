@@ -1,6 +1,7 @@
 # avoid outputs and cache
 source/lessons/*/cache
 source/lessons/*/output
+feedback
 
 # viz
 geohpc-results.qgz

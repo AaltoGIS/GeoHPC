@@ -6,6 +6,7 @@ dependencies:
   - geopandas
   - movingpandas
   - stonesoup
+  - jupyter-resource-usage
   - numpy
   - scikit-learn
   - scikit-image
