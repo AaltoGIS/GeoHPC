@@ -1,4 +1,4 @@
-Get acess to CSC resources
+Get access to CSC resources
 ==============================
 
 Self guided access

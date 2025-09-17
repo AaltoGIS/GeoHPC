@@ -1,5 +1,8 @@
-Install customized HPC env 
-============================
+Customized HPC env
+====================
+
+For some analysis where you need more specialized libraries you can create you own environment. Here, you will find instructions about how to install 
+a customized environment in CSC's Puhti supercomputer using a containerized approach.
 
 .. note::
 
@@ -35,7 +38,8 @@ You will find three different spaces in the Diretory. Each of them can be used i
 - projappl with **50 GB capacity** for intermediate processes
 - scratch with **1 TB capacity** for big output
 
-We will proceed using projappl to install our personal environment.
+We will proceed using *projappl* to install our personal environment. Note! We will use *projappl* just in case the disk *scratch* is cleaned up. 
+In this case you will not lose your environment and no need to install it again.
 
 
 Create your personal folder
@@ -44,7 +48,7 @@ Create your personal folder
 Once you are logged in you will see the *User Interface* of Puhti that shows the Apps you can use with HPC (Figure 1). 
 We are going to install a containerized Python environment in our **projappl** directory that later on will be connected to **Jupyter Lab**. 
 
-Start opening the **projappl** Directory
+Start opening the *Home Directory* icon and find the **projappl** Directory.
 
 .. figure:: img/img1.png
     
@@ -189,16 +193,108 @@ process might take approximately 15 minutes. Your terminal might give a message 
 If everything looks like this so far you have installed successfully a customized Python 
 environment in HPC. In the next page you will learn how to use this environment with Jupyter Notebooks and HPC resources. 
 
-Activate your environment (optional)
----------------------------------------
+.. Activate your environment (optional)
+.. ---------------------------------------
 
-You can use the next command (be sure you replace 200xxxx with your project number) to activate your environment and run scripts:
+.. You can use the next command (be sure you replace 200xxxx with your project number) to activate your environment and run scripts:
+
+.. .. code-block:: bash
+
+..     $ export PATH="/projappl/project_200xxxx/GIT-HPC/env_container/bin:$PATH"
+
+
+Set up a Jupyter Notebook
+===========================
+
+To access the **JupyterLab** application you can simply navigate to the User Interface menu in the Puhti dashboard or
+opening the **Apps** menu in the upper menu. If are logged in you can access to the dashboard using this link: 
+
+.. admonition:: CSC Puhti dashboard!
+
+    To access Puhti dashboard you need to log in with a *CSC account* or *HAKA* credentials.
+
+    .. button-link:: https://www.puhti.csc.fi/pun/sys/dashboard
+            :color: primary
+            :shadow:
+            :align: center
+
+            👉 Puhti dashboard!
+
+Simply, to start the **JupyterLab** click on the **Jupyter** button, like in Figure 9.
+
+.. figure:: img/img10.png
+    
+    *Figure 9. Puhti - Dashboard and Jupyter*
+
+Then, you will see how the *Jupyter session* starts where you can set up the resources for your Jupyter Notebook.
+Be sure you have selected your own **project** like *project_200xxxx*. In this case, we are using **partition** interactive which has maximum 8 cores 
+which is enough for our need. If you are willing to know more about the partitions find it in the 
+`Puhti Partitions Documentation <https://docs.csc.fi/computing/running/batch-job-partitions/>`_.
+
+For our parameters we will reserve 8 cores, 32 GB of processing memory, 60 GB of local disk, and 2 hours of availability, as an example.
+Your resources for now should look like Figure 10. Be sure that you are using your resources personally. 
+
+.. note::
+
+   If more people is sharing resources this configuration is not optimal and you must decrease resources.
+
+.. figure:: img/img11.png
+    :scale: 80%
+
+    *Figure 10. Puhti - Jupyter configuration*
+
+If you continue scrolling down you will find the *Settings* section. Under the **Python** parameter you should choose *Custom Path*. 
+Then, in the **Custom Python interpreter** you should add the directory of your installed environment container. 
+
+Copy and paste the location of the environment from here (be sure you replace 200xxxx with your project number):
 
 .. code-block:: bash
 
-    $ export PATH="/projappl/project_200xxxx/GIT-HPC/env_container/bin:$PATH"
+    /projappl/project_200xxxx/GIT-HPC/env_container/bin/python
 
+For the **Working directory** it is recommended to use the disk *scratch* especially 
+if you plan to write a large amount of results.
 
+The *Settings* section might look like Figure 11.
 
+.. figure:: img/img12.png
+    :scale: 80%
+    
+    *Figure 11. Puhti - Jupyter and Custom Python interpreter*
+
+Finally, press the **Launch** button. 
+You will see the session is launching untill it confirms it is *Running*. It will look like Figure 12.
+
+.. figure:: img/img13.png
+    
+    *Figure 12. Puhti - Jupyter and Custom Python interpreter*
+
+Then, press the button **Connect to Jupyter** and *Jupyter Lab* will open.
+
+Find the Lessons in the cloned repository under:
+
+.. code-block:: bash
+
+    /GIT-HPC/GeoHPC/source/lessons
+
+The *Launcher* menu and *Directory* should look like Figure 13.
+
+.. figure:: img/img14.png
+    
+    *Figure 13. Puhti - Jupyter Lab and Launcher in lessons directory*
+
+The Jupyter Notebooks for every lessons are in every enumerated folder. For example, the notebook for lesson 1 in **L1**, and so on. 
+The notebook name contains simply keywords of the lesson like *Shortest Path*.
+
+Open the Jupyter Notebook of Lesson 1 from:
+
+.. code-block:: bash
+
+    /GIT-HPC/GeoHPC/source/lessons/L1/01_ShortestPath-Parallelization.ipynb
+
+If you have reached until here you are able to start the Lesson 1 using HPC resources and a customized environment container. 
+Follow up the instruction in the Jupyter Notebook. 
+
+Happy coding!.
 
 

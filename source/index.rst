@@ -92,8 +92,9 @@ Find a detailed structure of the website here.
    :caption: Getting started
 
    getting-started/activate-account
+   getting-started/load-geoconda
    getting-started/install-env
-   getting-started/set-up-jupyter
+   .. getting-started/set-up-jupyter
    .. getting-started/desktop-connect
 
 .. toctree::
