@@ -57,18 +57,18 @@ To download all the materials on this website, you can use Git to clone the repo
 
     $ git clone https://github.com/AaltoGIS/GeoHPC.git
 
-Alternatively, you can download the files as a `ZipFile <https://github.com/AaltoGIS/GeoHPC/archive/refs/heads/master.zip>`__.
+Alternatively, you can download the files as a `ZipFile <https://github.com/AaltoGIS/GeoHPC/archive/refs/heads/master.zip>`__. 
+The coding material is located under the folder ``GeoHPC/source/lessons``.
 
-Once you have cloned and installed the environment specified in the section
-:doc:`Installing customized HPC environment <getting-started/install-env>` you will be able to run the Lessons
-located under the folder:
+GIS libraries
+------------------
+To start running the Lessons, you need the preinstalled environment ``geoconda`` 
+which contains all the necessary GIS libraries. You can activate the environment in your Juyter Lab Session. 
+Find the instructions in the section :doc:`Using GIS libraries on Puhti <getting-started/load-geoconda>`.
 
-.. code-block:: bash
-
-    GeoHPC/source/lessons
-
-Simply open every notebook and follow the instructions cell by cell.
-
+For those cases where your analysis requires specialized libraries that are not included in the
+``geoconda`` environment, you can create your own customized environment. Find the instructions in the section 
+:doc:`Installing customized HPC environment <getting-started/install-env>`.                     
 
 Content
 ---------
