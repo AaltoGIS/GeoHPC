@@ -193,14 +193,14 @@ process might take approximately 15 minutes. Your terminal might give a message 
 If everything looks like this so far you have installed successfully a customized Python 
 environment in HPC. In the next page you will learn how to use this environment with Jupyter Notebooks and HPC resources. 
 
-.. Activate your environment (optional)
-.. ---------------------------------------
+Activate your environment (optional)
+---------------------------------------
 
-.. You can use the next command (be sure you replace 200xxxx with your project number) to activate your environment and run scripts:
+You can use the next command (be sure you replace 200xxxx with your project number) to activate your environment and run scripts:
 
-.. .. code-block:: bash
+.. code-block:: bash
 
-..     $ export PATH="/projappl/project_200xxxx/GIT-HPC/env_container/bin:$PATH"
+    $ export PATH="/projappl/project_200xxxx/GIT-HPC/env_container/bin:$PATH"
 
 
 Set up a Jupyter Notebook
